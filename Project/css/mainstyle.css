@@ -1,0 +1,258 @@
+/* ======== BENDRI STILIAI ======== */
+body, html {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    background-image: url('../Pictures/bck.png');
+    background-size: cover;
+    height: 100%;
+}
+
+/* ======== HEADER ======== */
+header {
+    background-color: orange;
+    padding: 5px;
+    text-align: right;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 25%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.logo span {
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+}
+.separator {
+    width: 2px;
+    height: 40px;
+    background-color: white;
+    margin: 0 10px;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.signin {
+    font-size: 20px;
+    margin-right: 15px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.sign-in {
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+/* ======== NAVIGACIJA ======== */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.nvg {
+    width: 70%;
+    background-color: white;
+    margin: 0 auto;
+    padding: 5px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+/* ======== MYGTUKAI ======== */
+button {
+    font-style: italic;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 2px solid black;
+    background-color: orange;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.sign-in-button {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 8px 16px;
+    margin-right: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-style: normal;
+}
+
+/* ======== FILTRAVIMAS ======== */
+.filter {
+    background-color: white;
+}
+
+.filter-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background: white;
+    border: 1px solid black;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    min-width: 200px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+#apply-filter {
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#apply-filter:hover {
+    background: #0056b3;
+}
+
+/* ======== MAIN TURINYS ======== */
+main {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* ======== RECEPTŲ BLOKAS ======== */
+.box {
+    width: 70%;
+    background-color: white;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.receipts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.receipt {
+    width: 150px;
+    height: 60px;
+    background-color: brown;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: italic;
+    font-weight: bold;
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+
+/* ======== MODAL (SIGN-IN LANGAS) ======== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    margin: 10% auto;
+    text-align: center;
+    position: relative;
+}
+
+.profile-icon {
+    width: 50px;
+    border-radius: 50%;
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* ======== SOCIALINIAI MYGTUKAI ======== */
+.social-buttons button {
+    width: 100px;
+    margin: 5px;
+    padding: 10px;
+}
+
+.Facebook {
+    background-color: #5865F2;
+    color: white;
+}
+
+.google {
+    background-color: white;
+    color: black;
+}
+
+/* ======== INPUT LAUKAI ======== */
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+.Prisijungti {
+    width: 100%;
+    background-color: #FFD700;
+    color: black;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
