@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skonio kelionė - Įkėlimas</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+        <div class="logo" id="goHome">
+            <span>Skonio kelionė</span>
+            <div class="separator"></div>
+            <img src="../Pictures/Pic.webp" alt="Logo" class="profile-icon">
+        </div> 
+        <button id="openModal" class="sign-in-button">Log in</button>
+    </div>
+  </header>
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="../Pictures/Pic.webp" alt="User Icon" class="profile-icon">
+      <h2>Prisijungti</h2>
+      <div class="social-buttons">
+        <button class="Facebook">Facebook</button>
+        <button class="google">Google</button>
+      </div>
+      <p>arba</p>
+      <label for="email">El. paštas arba vartotojo vardas</label>
+      <input type="text" id="email" placeholder="įveskite el. pašto adresą arba vartotojo vardą">
+      <button class="Prisijungti">Prisijungti</button>
+    </div>
+  </div>
+
+  <nav>
+    <div class="nvg">
+      <button class="action" onclick="window.location.href='../gerimai.html'">Gėrimai</button>
+      <button class="action" onclick="window.location.href='../pusryciai.html'">Pusryčiai</button>
+      <button class="action" onclick="window.location.href='../vakariene.html'">Vakarienė</button>
+      <button class="action" onclick="window.location.href='../padazai.html'">Padažai</button>
+      <button class="action" onclick="window.location.href='../pyragaitoratai.html'">Pyragai ir tortai</button>
+      <button class="action" onclick="window.location.href='../savedrecp.html'">Išsaugoti Receptai</button>
+      <button class="action" onclick="window.location.href='../atsiusksavorecepta/P.html'">Atsiųsk savo receptą</button>
+      <button class="action" onclick="window.location.href='../manorcp.html'">Mano receptai</button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="form-container">
+      <h2>Įkelti receptą</h2>
+      <form id="recipeForm" enctype="multipart/form-data">
+        <label for="title">Pavadinimas:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="image">Nuotrauka:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <label for="video">Vaizdo įrašas (neprivaloma):</label>
+        <input type="file" id="video" name="video" accept="video/*">
+        <label for="description">Recepto aprašymas:</label>
+        <textarea id="description" name="description" required></textarea>
+        <label for="ingredients">Ingridientai:</label>
+        <textarea id="ingredients" name="ingredients" required></textarea>
+        <label for="process">Recepto kūrimo procesas:</label>
+        <textarea id="process" name="process" required></textarea>
+        <label for="category">Kategorija:</label>
+        <select id="category" name="category" required>
+          <option value="" disabled selected>Pasirinkite kategoriją</option>
+          <option value="Gėrimai">Gėrimai</option>
+          <option value="Pusryčiai">Pusryčiai</option>
+          <option value="Vakarienė">Vakarienė</option>
+          <option value="Desertai">Desertai</option>
+          <option value="Padažai">Padažai</option>
+        </select>
+        <button type="submit">Pridėti receptą</button>
+      </form>
+    </div>
+  </main>
+  
+  <script src="java/script.js"></script>
+</body>
+</html>
