@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Skonio kelionė</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/fontAwesome.css">
+    <link rel="stylesheet" href="css/hero-slider.css">
+    <link rel="stylesheet" href="css/owl-carousel.css">
+    <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Spectral:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+    <style>
+        .search-bar {
+            margin: 20px 0;
+        }
+
+        .recipe-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .recipe-item:hover {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .recipe-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        /* Centruojame puslapių bloką */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        .pagination>li>a,
+        .pagination>li>span {
+            cursor: pointer;
+        }
+
+        .pagination>li.active>a {
+            background-color: #337ab7;
+            color: white !important;
+            border-color: #337ab7;
+        }
+
+        .pagination>li.disabled>span,
+        .pagination>li.disabled>a {
+            color: #777;
+            cursor: not-allowed;
+            background-color: #fff;
+            border-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <a href="#" class="navbar-brand scroll-top">Skonio kelionė</a>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="main-nav" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html" class="myg">Pagrindinis</a></li>
+                        <li><a href="menu.html" class="myg">Receptai</a></li>
+                        <!--<li><a href="blog.html" class="myg">Atsiųsk savo receptą</a></li>-->
+                        <li><a href="contact.html" class="myg">Apie mus</a></li>
+                        <li><a href="log.html" class="logg">Prisijungti</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <section class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Receptai</h1>
+                    <p>Receptai – tai ne tik sudedamosios dalys, bet ir prisiminimai, meilė ir kūryba, kurią perduodame
+                        per kiekvieną patiekalą.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Bar -->
+    <section class="search-bar">
+        <div class="container">
+            <form id="searchForm" class="form-inline" onsubmit="return false;">
+                <div class="form-group" style="width: 80%;">
+                    <input type="text" id="searchInput" placeholder="Ieškoti receptų..." class="form-control"
+                        style="width: 100%;">
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="filterRecipes()">Ieškoti</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Recipes List with Pagination -->
+    <section class="recipes-list">
+        <div class="container">
+            <div id="recipesContainer"></div>
+
+            <nav aria-label="Page navigation">
+                <ul class="pagination" id="pagination"></ul>
+            </nav>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="js/vendor/bootstrap.min.js"></script>
+
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Receptų duomenys - galite papildyti daugiau receptų
+        const recipes = [
+            {
+                title: "Breakfast Menu",
+                description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, explicabo voluptatem nesciunt itaque qui ipsam accusamus! Corrupti nulla culpa molestiae! Consequatur ut tempore quibusdam laboriosam, nobis neque magnam tenetur! Nostrum.",
+                image: "img/breakfast_menu.jpg"
+            },
+            {
+                title: "Lunch Menu",
+                description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, explicabo voluptatem nesciunt itaque qui ipsam accusamus! Corrupti nulla culpa molestiae! Consequatur ut tempore quibusdam laboriosam, nobis neque magnam tenetur! Nostrum.",
+                image: "img/lunch_menu.jpg"
+            },
+            {
+                title: "Dinner Menu",
+                description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, explicabo voluptatem nesciunt itaque qui ipsam accusamus! Corrupti nulla culpa molestiae! Consequatur ut tempore quibusdam laboriosam, nobis neque magnam tenetur! Nostrum.",
+                image: "img/dinner_menu.jpg"
+            },
+            {
+                title: "Breakfast Special",
+                description: "Specialūs pusryčiai su šviežiais ingredientais ir meile.",
+                image: "img/breakfast_menu.jpg"
+            },
+            {
+                title: "Lunch Delight",
+                description: "Skani pietų idėja visai šeimai.",
+                image: "img/lunch_menu.jpg"
+            },
+            {
+                title: "Dinner Feast",
+                description: "Įspūdinga vakarienė ypatingai progai.",
+                image: "img/dinner_menu.jpg"
+            }
+        ];
+
+        const recipesPerPage = 4;
+        let currentPage = 1;
+        let filteredRecipes = recipes;
+
+        // Atvaizduoja receptus pagal puslapį ir filtrą
+        function renderRecipes() {
+            const container = document.getElementById('recipesContainer');
+            container.innerHTML = '';
+
+            if (filteredRecipes.length === 0) {
+                container.innerHTML = '<p>Nerasta receptų pagal jūsų užklausą.</p>';
+                renderPagination();
+                return;
+            }
+
+            const start = (currentPage - 1) * recipesPerPage;
+            const end = start + recipesPerPage;
+            const pageRecipes = filteredRecipes.slice(start, end);
+
+            pageRecipes.forEach(recipe => {
+                const recipeHTML = `
+                    <div class="recipe-item row" style="cursor: pointer;"
+                        onclick="openRecipe('${escapeQuotes(recipe.title)}', '${escapeQuotes(recipe.description)}', '${recipe.image}')">
+                        <div class="col-md-5">
+                            <img src="${recipe.image}" alt="${recipe.title}" class="img-responsive">
+                        </div>
+                        <div class="col-md-7">
+                            <h2>${recipe.title}</h2>
+                            <p>${recipe.description}</p>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += recipeHTML;
+            });
+
+            renderPagination();
+        }
+
+        // Funkcija saugiems kabučių panaikinimams stringe (kad HTML onclick neirtų)
+        function escapeQuotes(str) {
+            return str.replace(/'/g, "\\'").replace(/"/g, '\\"');
+        }
+
+        // Atvaizduoja puslapių numerius ir rodykles
+        function renderPagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            const totalPages = Math.ceil(filteredRecipes.length / recipesPerPage);
+            if (totalPages === 0) return;
+
+            // Atgal rodyklė
+            const prevLi = document.createElement('li');
+            prevLi.className = currentPage === 1 ? 'disabled' : '';
+            prevLi.innerHTML = `<a href="#" aria-label="Previous" onclick="goToPage(${currentPage - 1}); return false;">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>`;
+            pagination.appendChild(prevLi);
+
+            // Puslapių numeriai
+            for (let i = 1; i <= totalPages; i++) {
+                const li = document.createElement('li');
+                li.className = i === currentPage ? 'active' : '';
+                li.innerHTML = `<a href="#" onclick="goToPage(${i}); return false;">${i}</a>`;
+                pagination.appendChild(li);
+            }
+
+            // Pirmyn rodyklė
+            const nextLi = document.createElement('li');
+            nextLi.className = currentPage === totalPages ? 'disabled' : '';
+            nextLi.innerHTML = `<a href="#" aria-label="Next" onclick="goToPage(${currentPage + 1}); return false;">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>`;
+            pagination.appendChild(nextLi);
+        }
+
+        // Puslapio keitimo funkcija
+        function goToPage(page) {
+            const totalPages = Math.ceil(filteredRecipes.length / recipesPerPage);
+            if (page < 1 || page > totalPages) return;
+
+            currentPage = page;
+            renderRecipes();
+            window.scrollTo(0, 0); // Paslinkti puslapį į viršų
+        }
+
+        // Filtravimo pagal paiešką funkcija
+        function filterRecipes() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (query === '') {
+                filteredRecipes = recipes;
+            } else {
+                filteredRecipes = recipes.filter(recipe =>
+                    recipe.title.toLowerCase().includes(query) ||
+                    recipe.description.toLowerCase().includes(query)
+                );
+            }
+            currentPage = 1;
+            renderRecipes();
+        }
+
+        // Recepto atidarymo funkcija (alert su visa informacija)
+        function openRecipe(title, description, image) {
+            const url = `receptas.html?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&image=${encodeURIComponent(image)}`;
+            window.location.href = url;
+        }
+
+
+
+        // Įkeliame pirmą puslapį su visais receptais
+        document.addEventListener('DOMContentLoaded', () => {
+            renderRecipes();
+        });
+    </script>
+</body>
+
+</html>

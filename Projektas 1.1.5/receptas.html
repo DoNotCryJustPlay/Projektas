@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Receptas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+    <!-- Font Awesome 6 CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Spectral:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #fff;
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .recipe-detail {
+            padding: 40px 0;
+            color: #222;
+            background-color: #fff;
+        }
+
+        .recipe-container {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            max-width: 900px;
+            margin: 0 auto 60px;
+            flex-wrap: wrap;
+        }
+
+        .recipe-detail img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .recipe-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .recipe-info h2 {
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .recipe-info p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        /* Vartotojo info blokas */
+        .user-info {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            background-color: #f9f9f9;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgb(0 0 0 / 0.05);
+        }
+
+        .user-info h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        .user-info p {
+            margin: 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Komentarų blokas */
+        .comments-section {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            background-color: #fefefe;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgb(0 0 0 / 0.05);
+        }
+
+        .comments-section h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .comment {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .comment .author {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .comment .text {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Įvertinimo žvaigždutės */
+        #starRating i {
+            font-size: 28px;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            margin-right: 5px;
+        }
+
+        #starRating i.filled,
+        #starRating i.fa-solid {
+            color: #ffc107; /* Geltona žvaigždutė */
+        }
+
+        /* Komentarų forma */
+        #commentForm {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            background-color: #f9f9f9;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgb(0 0 0 / 0.05);
+        }
+
+        #commentForm textarea {
+            width: 100%;
+            resize: vertical;
+            min-height: 80px;
+            margin-top: 8px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        #commentForm button.btn-primary {
+            margin-top: 15px;
+            padding: 10px 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .recipe-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .recipe-info {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <a href="#" class="navbar-brand scroll-top">Skonio kelionė</a>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="main-nav" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html" class="myg">Pagrindinis</a></li>
+                        <li><a href="menu.html" class="myg">Receptai</a></li>
+                        <li><a href="contact.html" class="myg">Apie mus</a></li>
+                        <li><a href="log.html" class="logg">Prisijungti</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <section class="recipe-detail">
+        <div class="recipe-container">
+            <img id="recipeImage" src="" alt="Recepto nuotrauka">
+            <div class="recipe-info">
+                <h2 id="recipeTitle">Recepto pavadinimas</h2>
+                <p id="recipeDescription">Recepto aprašymas</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vartotojo info blokas -->
+    <section class="user-info" id="userInfoSection" style="display:none;">
+        <h3>Vartotojas</h3>
+        <p id="userName"></p>
+        <p id="userBio"></p>
+    </section>
+
+    <!-- Komentarų blokas -->
+    <section class="comments-section" id="commentsSection" style="display:none;">
+        <h3>Komentarai</h3>
+        <div id="commentsList"></div>
+    </section>
+
+    <!-- Komentarų forma (matoma tik prisijungusiems) -->
+    <section id="commentForm" style="display:none;">
+        <h3>Palikite savo įvertinimą ir komentarą</h3>
+        <div id="starRating" role="radiogroup" aria-label="Įvertinkite nuo 1 iki 5 žvaigždžių">
+            <i class="fa-regular fa-star" data-value="1" tabindex="0" role="radio" aria-checked="false" aria-label="1 žvaigždutė"></i>
+            <i class="fa-regular fa-star" data-value="2" tabindex="0" role="radio" aria-checked="false" aria-label="2 žvaigždutės"></i>
+            <i class="fa-regular fa-star" data-value="3" tabindex="0" role="radio" aria-checked="false" aria-label="3 žvaigždutės"></i>
+            <i class="fa-regular fa-star" data-value="4" tabindex="0" role="radio" aria-checked="false" aria-label="4 žvaigždutės"></i>
+            <i class="fa-regular fa-star" data-value="5" tabindex="0" role="radio" aria-checked="false" aria-label="5 žvaigždžių"></i>
+        </div>
+        <textarea id="commentText" placeholder="Jūsų komentaras" required></textarea>
+        <button type="button" class="btn btn-primary" id="submitComment">Siųsti</button>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/vendor/jquery-1.11.2.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+
+    <script>
+        // Simuliuojame, ar vartotojas prisijungęs
+        // Pakeisk šią reikšmę į false, jei vartotojas neprisijungęs
+        const loggedIn = true;
+
+        // Simuliuotas prisijungusio vartotojo vardas ir bio
+        const currentUser = {
+            name: "Jonas",
+            bio: "Maisto mėgėjas ir kulinarijos entuziastas."
+        };
+
+        // Išsaugoti komentarus čia (galima keisti į serverio API)
+        let comments = [
+            { author: "Petras", rating: 4, text: "Labai skanus receptas, rekomenduoju!" },
+            { author: "Asta", rating: 5, text: "Nuostabus skonis, tikrai gaminsiu dar kartą." }
+        ];
+
+        function getParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Rodo žvaigždutes (užpildo nuo 1 iki n)
+        function renderStars(container, rating) {
+            container.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement('i');
+                if (i <= rating) {
+                    star.className = 'fa-solid fa-star filled';
+                } else {
+                    star.className = 'fa-regular fa-star';
+                }
+                container.appendChild(star);
+            }
+        }
+
+        // Rodo komentarų sąrašą
+        function renderComments() {
+            const list = document.getElementById('commentsList');
+            list.innerHTML = '';
+            if (comments.length === 0) {
+                list.innerHTML = '<p>Dar nėra komentarų.</p>';
+                return;
+            }
+            comments.forEach(c => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = `
+                    <div class="author">${escapeHtml(c.author)}</div>
+                    <div class="rating" style="color:#ffc107;">${'★'.repeat(c.rating)}${'☆'.repeat(5 - c.rating)}</div>
+                    <div class="text">${escapeHtml(c.text)}</div>
+                `;
+                list.appendChild(commentDiv);
+            });
+        }
+
+        // Išvalyti tekstą nuo pavojingų simbolių
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.appendChild(document.createTextNode(text));
+            return div.innerHTML;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Užpildom recepto info
+            const title = getParam('title');
+            const description = getParam('description');
+            const image = getParam('image');
+
+            document.getElementById('recipeTitle').textContent = title || 'Receptas';
+            document.getElementById('recipeDescription').textContent = description || 'Aprašymas nėra.';
+            document.getElementById('recipeImage').src = image || 'img/default.jpg';
+
+            // Rodo vartotojo info, jei prisijungęs
+            if (loggedIn) {
+                document.getElementById('userInfoSection').style.display = 'block';
+                document.getElementById('userName').textContent = currentUser.name;
+                document.getElementById('userBio').textContent = currentUser.bio;
+
+                document.getElementById('commentForm').style.display = 'block';
+                document.getElementById('commentsSection').style.display = 'block';
+            } else {
+                document.getElementById('userInfoSection').style.display = 'none';
+                document.getElementById('commentForm').style.display = 'none';
+                document.getElementById('commentsSection').style.display = 'none';
+            }
+
+            renderComments();
+
+            // Žvaigždžių įvertinimas
+            const stars = document.querySelectorAll('#starRating i');
+            let selectedRating = 0;
+
+            function updateStars(rating) {
+                stars.forEach(star => {
+                    const val = parseInt(star.getAttribute('data-value'));
+                    if (val <= rating) {
+                        star.classList.add('fa-solid', 'filled');
+                        star.classList.remove('fa-regular');
+                        star.setAttribute('aria-checked', 'true');
+                    } else {
+                        star.classList.remove('fa-solid', 'filled');
+                        star.classList.add('fa-regular');
+                        star.setAttribute('aria-checked', 'false');
+                    }
+                });
+            }
+
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    selectedRating = parseInt(star.getAttribute('data-value'));
+                    updateStars(selectedRating);
+                });
+                star.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        star.click();
+                    }
+                });
+            });
+
+            // Komentaro siuntimas
+            document.getElementById('submitComment').addEventListener('click', () => {
+                const commentText = document.getElementById('commentText').value.trim();
+                if (selectedRating === 0) {
+                    alert('Prašome pasirinkti įvertinimą žvaigždutėmis.');
+                    return;
+                }
+                if (!commentText) {
+                    alert('Prašome įvesti komentarą.');
+                    return;
+                }
+                // Pridėti komentarą (čia galėtų būti API iškvietimas)
+                comments.push({
+                    author: currentUser.name,
+                    rating: selectedRating,
+                    text: commentText
+                });
+
+                renderComments();
+
+                // Išvalyti formą
+                document.getElementById('commentText').value = '';
+                selectedRating = 0;
+                updateStars(0);
+            });
+        });
+    </script>
+</body>
+
+</html>
