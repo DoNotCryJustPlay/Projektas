@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Siųsti receptą - Skonio kelionė</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/fontAwesome.css">
+  <link rel="stylesheet" href="css/templatemo-style.css">
+  <link rel="stylesheet" href="css/index.css">
+
+  <style>
+    .form-section {
+      padding: 50px 0;
+    }
+    .alert-success {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      display: none;
+    }
+    #preview-container {
+      text-align: center;
+    }
+    #preview {
+      margin-top: 15px;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      padding: 5px;
+      border-radius: 5px;
+      display: none;
+    }
+    #videoPreview {
+      max-width: 100%;
+      display: none;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <a href="#" class="navbar-brand scroll-top">Skonio kelionė</a>
+      <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+          <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="main-nav" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+             <li><a href="index.html" class="myg">Pagrindinis</a></li>
+            <li><a href="menu.html" class="myg">Receptai</a></li>
+            <li><a href="contact.html" class="myg">Apie mus</a></li>
+            <li><a href="log.html"class="myg"log>Prisijungti</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <section class="form-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h2>Siųsk savo receptą</h2>
+          <form id="recipeForm" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="name">Jūsų vardas</label>
+              <input type="text" class="form-control" id="name" placeholder="Įveskite savo vardą" required>
+            </div>
+            <div class="form-group">
+              <label for="email">El. paštas</label>
+              <input type="email" class="form-control" id="email" placeholder="Įveskite savo el. pašto adresą" required>
+            </div>
+            <div class="form-group">
+              <label for="title">Recepto pavadinimas</label>
+              <input type="text" class="form-control" id="title" placeholder="Įrašykite recepto pavadinimą" required>
+            </div>
+            <div class="form-group">
+              <label for="category">Kategorija</label>
+              <select class="form-control" id="category" required>
+                <option value="">Pasirinkite kategoriją</option>
+                <option>Gėrimai</option>
+                <option>Pusryčiai</option>
+                <option>Vakarienė</option>
+                <option>Padažai</option>
+                <option>Pyragai ir tortai</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="ingredients">Ingridientai</label>
+              <textarea class="form-control" id="ingredients" placeholder="Įrašykite ingredientus" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="instructions">Gaminimo eiga</label>
+              <textarea class="form-control" id="instructions" placeholder="Aprašykite kaip gaminti" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="image">Maisto nuotrauka</label>
+              <input type="file" class="form-control" id="image" accept="image/*" required>
+            </div>
+            <div class="form-group">
+              <label for="video">Maisto video (neprivaloma)</label>
+              <input type="file" class="form-control" id="video" accept="video/*">
+            </div>
+            <button type="submit" class="btn btn-primary">Siųsti receptą</button>
+          </form>
+        </div>
+        <div class="col-md-4" id="preview-container">
+          <div id="imageTitle" style="display: none;">
+            <h4>Įkelta nuotrauka</h4>
+          </div>
+          <img id="preview" alt="Jūsų pasirinkta nuotrauka" />
+          <div id="videoTitle" style="display: none;">
+            <h4>Įkeltas video</h4>
+          </div>
+          <video id="videoPreview" controls></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="alert alert-success" id="successMessage">
+    Receptas sėkmingai išsiųstas! Administracija jį peržiūrės per 2–3 darbo dienas.
+  </div>
+
+    <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <p>&copy; 2025 Skonio kelionė</p>
+        </div>
+        <div class="col-md-4">
+          <ul class="social-icons">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <p>Sukurta su meile Lietuvoje</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // Atvaizduojame įkeltą nuotrauką ir video
+    $("#image").on("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          $('#preview').attr('src', e.target.result).show();
+          $('#imageTitle').show();
+        }
+        reader.readAsDataURL(file);
+      } else {
+        $('#preview').hide();
+        $('#imageTitle').hide();
+      }
+    });
+
+    $("#video").on("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const url = URL.createObjectURL(file);
+        $('#videoPreview').attr('src', url).show();
+        $('#videoTitle').show();
+      } else {
+        $('#videoPreview').hide();
+        $('#videoTitle').hide();
+      }
+    });
+
+    // Užpildyti vardą ir el. paštą, jei yra prisijungęs vartotojas localStorage
+    $(document).ready(function() {
+      const storedName = localStorage.getItem('userName');
+      const storedEmail = localStorage.getItem('userEmail');
+
+      if (storedName && storedEmail) {
+        $('#name').val(storedName).prop('readonly', true);
+        $('#email').val(storedEmail).prop('readonly', true);
+      } else {
+        $('#name').prop('readonly', false);
+        $('#email').prop('readonly', false);
+      }
+    });
+
+    $("#recipeForm").on("submit", function (e) {
+      e.preventDefault();
+      if (this.checkValidity()) {
+        $("#successMessage").fadeIn().delay(4000).fadeOut();
+        this.reset();
+        $('#preview').hide();
+        $('#videoPreview').hide();
+        $('#imageTitle').hide();
+        $('#videoTitle').hide();
+
+        // Po formos išvalymo, jei prisijungęs vartotojas, vėl užpildome vardą ir el.paštą
+        const storedName = localStorage.getItem('userName');
+        const storedEmail = localStorage.getItem('userEmail');
+        if (storedName && storedEmail) {
+          $('#name').val(storedName).prop('readonly', true);
+          $('#email').val(storedEmail).prop('readonly', true);
+        }
+      } else {
+        this.reportValidity();
+      }
+    });
+  </script>
+</body>
+</html>
