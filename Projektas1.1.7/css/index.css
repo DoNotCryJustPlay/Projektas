@@ -1,0 +1,32 @@
+.logg{
+    margin-left: 200px;
+    background-color:  lightblue;
+    border-radius: 20%;
+    border: solid black 1px;
+}
+.myg{
+    background-color: lightblue;
+    border-radius: 20%;
+    border: solid black 1px;
+}
+/* Kaire */
+.recboxtxtk{
+    color: black;
+    text-align: left;
+    max-width: none;
+    padding: 15px;
+    width: 200%;
+}
+/* Desine */
+.recboxtxtd{
+    color: black;
+    text-align: left;
+    max-width: none;
+    padding: 15px;
+    width: 100%;
+}
+.more{
+    margin-left: 300px;
+    font-size: 10px;
+    
+}
