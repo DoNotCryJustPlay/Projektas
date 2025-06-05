@@ -1,0 +1,4 @@
+1. Įkelti duomenų bazę (sql failas pateiktas) į myphpadmin.
+2. Projektą perkelti i htdocs (projekto failai pateikti).
+3. Užeiti į puslapį po atliktų veiksmų.
+Nuoroda: localhost/projektas1.1.7
